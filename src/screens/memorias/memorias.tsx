@@ -7,12 +7,12 @@ import { NavegacaoParams } from "../../navigations/categorias";
 
 
 export interface ScreenProps {
-    route: RouteProp<NavegacaoParams, "Home">
+    route: RouteProp<NavegacaoParams, "Memorias">
 }
 
-export default function Home(props: any) {
+export default function Memorias(props: any) {
 
-    type navProp = StackNavigationProp<NavegacaoParams, "Home">;
+    type navProp = StackNavigationProp<NavegacaoParams, "Memorias">;
     const navigation = useNavigation<navProp>();
 
 
@@ -25,7 +25,7 @@ export default function Home(props: any) {
                 <Text>Tela 1</Text>
             </View> */}
         <ScrollView>
-        <Text style={styles.text}>LANÇAMENTOS</Text>
+        <Text style={styles.text}>Memorias</Text>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
           <Produtos img={require('../../assets/imgs/RTX3080.jpg')} cost="R$4.140,90" onClick={()=> console.log('Clicou')}>

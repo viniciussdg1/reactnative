@@ -8,12 +8,12 @@ import { RouteProp, useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native'
 import cadastro from '../cadastrar/cadastro';
 import { Botao } from '../../components/botao';
-import { NavegacaoPrincipalParams } from '../../navigations';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { NavegacaoParams } from '../../navigations/perfil';
 
   
 export interface ScreenProps {
-    route: RouteProp<NavegacaoPrincipalParams, "Login">
+    route: RouteProp<NavegacaoParams, "Login">
 }
 
 
@@ -32,7 +32,7 @@ export default function LoginPage(props: any) {
   }
 
 
-    type navProp = StackNavigationProp<NavegacaoPrincipalParams, "Cadastro">;
+    type navProp = StackNavigationProp<NavegacaoParams, "Login">;
     const navigation = useNavigation<navProp>();
     
 

@@ -7,9 +7,9 @@ import Home from '../home/home';
 import LoginPage from '../login/login';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
-import { NavegacaoPrincipalParams } from '../../navigations';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { NavegacaoParams } from '../../navigations/perfil';
 
 
 // function MinhaTela() {
@@ -24,7 +24,7 @@ import * as Yup from 'yup';
 
 // const Stack = createStackNavigator();
 export interface ScreenProps {
-    route: RouteProp<NavegacaoPrincipalParams, "Cadastro">
+    route: RouteProp<NavegacaoParams, "Cadastro">
 }
 
 
@@ -33,7 +33,7 @@ export default function Cadastro(this: any, props: any) {
     const [ resultado, setResultado ] = useState<null|'Cadastrado'|'Error'>(null);
 
 
-    type navProp = StackNavigationProp<NavegacaoPrincipalParams, "Cadastro">;
+    type navProp = StackNavigationProp<NavegacaoParams, "Cadastro">;
     const navigation = useNavigation<navProp>();
 
 
