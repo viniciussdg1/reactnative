@@ -29,7 +29,6 @@ export default function LoginPage(props: any) {
       navigation.navigate('Home')
     }else
       setResultado('falhou')
-      navigation.navigate('Cadastro')
   }
 
 
