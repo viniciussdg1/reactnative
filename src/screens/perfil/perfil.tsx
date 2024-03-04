@@ -13,7 +13,7 @@ import { NavegacaoParams } from '../../navigations/perfil';
 
   
 export interface ScreenProps {
-    route: RouteProp<NavegacaoParams, "PerfilPage">
+    route: RouteProp<NavegacaoParams, "Perfil">
 }
 
 
@@ -21,13 +21,14 @@ export interface ScreenProps {
 export default function PerfilPage(props: any) {
 
 
-    type navProp = StackNavigationProp<NavegacaoParams, "PerfilPage">;
+    type navProp = StackNavigationProp<NavegacaoParams, "Perfil">;
     const navigation = useNavigation<navProp>();
     
 
 
   return (
     <View style={styles.container}>
+      <Text>Perfil</Text>
     </View>
   );
 }
