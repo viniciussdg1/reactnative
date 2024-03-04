@@ -7,9 +7,8 @@ import Home from '../screens/home/home';
 export type NavegacaoParams = {
     Cadastro: any,
     Login: any,
-    Perfil: any,
     Home: any,
-    PerfilPage: any,
+    Perfil: any,
 }
 
 const Stack = createStackNavigator<NavegacaoParams>();
