@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, Button } from 'react-native';
 
 export default function Produtos(props) {
 
@@ -23,6 +23,7 @@ export default function Produtos(props) {
       <View opacity={0.4}>
         <Text style={styles.produtoText}> {props.cost} </Text>
       </View>
+      <Button title="Comprar" onPress={props.onClick} /> 
    </TouchableOpacity>
   );
 }
