@@ -35,7 +35,8 @@ export function NavegacaoPrincipal() {
                     tabBarLabel:'Home',
                     tabBarIcon:(btn)=> <MaterialIcons name="home" size={20} color={(btn.focused ? 'blue' : 'black')} />
                 }}/>
-                <Tab.Screen name="Categorias" component={CategoriasPage} options={{
+                {/* AQUI TU ESTAVA PASSANDOA  PAGINA AO INVPÈS DA NAVEGAÇÂO COM OS DEMAIS ITENS */}
+                <Tab.Screen name="Categorias" component={Categorias} options={{
                     tabBarLabel:'Categorias',
                     tabBarIcon:(btn)=> <AntDesign name="bars" size={20} color={(btn.focused ? 'blue' : 'black')}  />
                 }}/>
