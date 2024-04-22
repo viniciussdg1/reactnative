@@ -24,7 +24,11 @@ export default function CategoriasPage(this: any, props: any) {
                  <Text style={styles.buttonText}>Cadastrar</Text>
             </TouchableOpacity> */}
             <>
-            <Text>CATEGORIAS</Text>
+            <Button title="Fontes" onPress={() => navigation.navigate('Fontes')} />
+            <Button title="Placas Mãe" onPress={() => navigation.navigate('Placamaes')} />
+            <Button title="Placas de Video" onPress={() => navigation.navigate('Placasdevideo')} />
+            <Button title="Processadores" onPress={() => navigation.navigate('Processadores')} />
+            <Button title="Memorias" onPress={() => navigation.navigate('Memorias')} />
             </>
         </View>
     )
@@ -43,10 +47,16 @@ const styles = StyleSheet.create({
         marginVertical: 5
     },
     button: {
-        backgroundColor: '#2196F3',
+        backgroundColor: 'grey',
         padding: 10,
         borderRadius: 5,
         margin: 10,
+    },
+    button1: {
+
+    },
+    buttonlast: {
+
     },
     buttonText: {
         color: 'white',
