@@ -28,7 +28,13 @@ export default function PerfilPage(props: any) {
 
   return (
     <View style={styles.container}>
-      <Text>Perfil</Text>
+      <View style={styles.imagem}>
+        <Image source={require('../../assets/imgs/png.png')} style={styles.imagem2}/>
+      </View>
+      <Text>Nome:</Text>
+      <Text>Email:</Text>
+      <Text>Telefone:</Text>
+      <Text>Endereço:</Text>
     </View>
   );
 }
@@ -58,9 +64,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 10,
     },
-    buttonText: {
+  buttonText: {
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  imagem: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imagem2: {
+    height: 250,
+    width: 250,
+  }
 });
