@@ -1,9 +1,12 @@
 import { RouteProp, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { StyleSheet, Text, View, ScrollView} from "react-native";
+import { StyleSheet, Text, View, ScrollView, ToastAndroid, Button, TextInput, Alert} from "react-native";
 import { Image } from 'react-native';
 import Produtos from "../../components/componenttest";
 import { NavegacaoParams } from "../../navigations/categorias";
+import { useRef } from "react";
+import { Modalize } from "react-native-modalize";
+import { FlatList, GestureHandlerRootView } from "react-native-gesture-handler";
 
 
 export interface ScreenProps {
@@ -15,7 +18,29 @@ export default function Memorias(props: any) {
     type navProp = StackNavigationProp<NavegacaoParams, "Memorias">;
     const navigation = useNavigation<navProp>();
 
+    const modal = useRef<Modalize>();
 
+    const confirmaCompra = () => {
+      ToastAndroid.show('Compra realizada', ToastAndroid.LONG);
+      modal.current?.close();
+    }
+
+
+    const abrir = () => {
+      try {
+        modal.current?.open();
+      } catch (erro) {
+        console.log(erro)
+      }
+    }
+
+
+    const produtos = [
+      {
+        id: '001',
+        desc: ["R$240,90", 'Memoria Kingston 8GB']
+      }
+    ]
 
 
      return (
@@ -24,28 +49,39 @@ export default function Memorias(props: any) {
                 <Image source={require('../../assets/imgs/logo.png')} style={{ width: 200, height: 200, alignSelf: 'center' }}/>
                 <Text>Tela 1</Text>
             </View> */}
-        <ScrollView>
+    
         <Text style={styles.text}>Memorias</Text>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-          <Produtos img={require('../../assets/imgs/RTX3080.jpg')} cost="R$4.140,90" onClick={()=> console.log('Clicou')}>
-            RTX 3080
-          </Produtos>
-          <Produtos img={require('../../assets/imgs/RX6800.jpg')} cost="R$3.880,90" onClick={()=> console.log('Clicou') }>
-            RX 6800
-          </Produtos>
+          <FlatList data={produtos} keyExtractor={item=>item.id} renderItem={({item})=> <Produtos img={require('../../assets/imgs/kingston.jpg')} cost={item.desc[0]} onClick={abrir}>
+            {item.desc[1]}
+          </Produtos> }/>
         </View>
+      <GestureHandlerRootView style={styles.container}>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-          <Produtos img={require('../../assets/imgs/RX6700xt.jpg')} cost="R$3.120,90" onClick={()=> alert('CLICOU')}>
-            RX 6700 xt
-          </Produtos>
-          <Produtos img={require('../../assets/imgs/rxt3060ti.jpg')} cost="R$2800,00" onClick={()=> alert('CLICOU')}>
-            RTX 3060ti
-          </Produtos>
+      <Modalize 
+        ref={modal}
+        modalHeight={200}
+      >
+        <View style={{padding: 10}}>
+          <Text>Compra de Produto</Text>
+          <TextInput placeholder='Digite seu endereço'/>
+          <View style={{flexDirection: 'row'}}>
+            <Button title="BOLETO" onPress={confirmaCompra}/>
+            <Button title="PIX"  onPress={confirmaCompra}/>
+            <Button title="CARTÃO"  onPress={confirmaCompra}/>
+          </View>
+
+          <Button title="Cancelar" color="tomato" onPress={() => {
+            Alert.alert('Cancelar', 'Deseja realmente cancelar a compra?', [
+              { text: 'Sim', onPress: ()=> modal.current?.close()},
+              { text: 'Não'}
+            ])  
+            
+          }} />
         </View>
-
-      </ScrollView>
+      </Modalize>
+    </GestureHandlerRootView>
         </>
     )
 }
@@ -68,7 +104,6 @@ const styles = StyleSheet.create({
     },
     text:{
         alignItems: 'center',
-        fontFamily: 'Anton_400Regular',
         fontSize: 26,
         marginHorizontal: '1%'
     },
