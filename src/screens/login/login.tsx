@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import * as Yup from 'yup';
 import { Image } from 'react-native';
 import { TouchableOpacity } from 'react-native';
@@ -10,6 +10,8 @@ import cadastro from '../cadastrar/cadastro';
 import { Botao } from '../../components/botao';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { NavegacaoParams } from '../../navigations/perfil';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../config/firebase-config';
 
   
 export interface ScreenProps {
@@ -23,12 +25,9 @@ export default function LoginPage(props: any) {
   const [ resultado, setResultado ] = useState<null|'logado'|'falhou'>(null);
   
   const handleLogin = async ({email, senha}:any) => {
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    if (email.trim() == 'teste@teste.com' && senha.trim() == '123456') {
-      setResultado('logado')
-      navigation.navigate('Home')
-    }else
-      setResultado('falhou')
+    await signInWithEmailAndPassword(auth, email, senha)
+            .then(usuario => navigation.reset({index: 0, routes: [{name: 'Home'}]}))
+            .catch(erro => Alert.alert('Erro', 'Login ou senha incorreta!')); 
   }
 
 
@@ -99,3 +98,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+

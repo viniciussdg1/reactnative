@@ -4,10 +4,10 @@
     "slug": "Laboratorio",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo1.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo1.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,13 +18,15 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "br.com.vinicius.reactnative",
+      "versionCode":2,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo1.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo1.png"
     },
     "extra": {
       "eas": {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Image } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { RouteProp, useNavigation } from '@react-navigation/native';
@@ -10,6 +10,9 @@ import { createStackNavigator, StackNavigationProp } from '@react-navigation/sta
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { NavegacaoParams } from '../../navigations/perfil';
+import { getFirestore, setDoc, doc } from '@firebase/firestore';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { auth, db } from '../../config/firebase-config';
 
 
 // function MinhaTela() {
@@ -29,6 +32,7 @@ export interface ScreenProps {
 
 
 export default function Cadastro(this: any, props: any) {
+    
 
     const [ resultado, setResultado ] = useState<null|'Cadastrado'|'Error'>(null);
 
@@ -45,14 +49,16 @@ export default function Cadastro(this: any, props: any) {
     });
 
     const handleCadastro = async ({email, senha, nome, senha2}:any) => {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        if (senha == senha2){
-            setResultado('Cadastrado');
-            navigation.navigate('Login'); 
-        } 
-        else {
-            setResultado('Error');
-        }
+        await createUserWithEmailAndPassword(auth, email, senha)
+        .then((usuario) => {
+
+            setDoc(doc(db, 'usuarios', usuario.user.uid), {
+                email, nome, senha
+            })
+
+            navigation.navigate('Login')
+        })
+        .catch(erro => Alert.alert('Erro', 'Não foi possivel criar o usuário, tente novamente'))
     }
 
 
@@ -123,3 +129,5 @@ const styles = StyleSheet.create({
         color: 'green'
     }
 });
+
+

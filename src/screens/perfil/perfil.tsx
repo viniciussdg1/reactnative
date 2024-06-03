@@ -13,7 +13,7 @@ import { NavegacaoParams } from '../../navigations/perfil';
 
   
 export interface ScreenProps {
-    route: RouteProp<NavegacaoParams, "PerfilPage">
+    route: RouteProp<NavegacaoParams, "Perfil">
 }
 
 
@@ -21,13 +21,20 @@ export interface ScreenProps {
 export default function PerfilPage(props: any) {
 
 
-    type navProp = StackNavigationProp<NavegacaoParams, "PerfilPage">;
+    type navProp = StackNavigationProp<NavegacaoParams, "Perfil">;
     const navigation = useNavigation<navProp>();
     
 
 
   return (
     <View style={styles.container}>
+      <View style={styles.imagem}>
+        <Image source={require('../../assets/imgs/png.png')} style={styles.imagem2}/>
+      </View>
+      <Text>Nome:</Text>
+      <Text>Email:</Text>
+      <Text>Telefone:</Text>
+      <Text>Endereço:</Text>
     </View>
   );
 }
@@ -57,9 +64,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 10,
     },
-    buttonText: {
+  buttonText: {
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  imagem: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imagem2: {
+    height: 250,
+    width: 250,
+  }
 });
